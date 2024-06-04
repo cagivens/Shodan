@@ -1,4 +1,6 @@
 package fclm;
 
-public class TOTWatchdog {
+public class TOTWatchdog extends Watchdog {
+
+    public TOTWatchdog(String handle) { super(handle); }
 }
