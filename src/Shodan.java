@@ -1,3 +1,5 @@
+import rosterizer.Roster;
+
 import javax.swing.JFrame;
 
 public class Shodan extends JFrame {
@@ -10,6 +12,8 @@ public class Shodan extends JFrame {
     }
 
     public static void main(String[] args) {
-        Shodan program = new Shodan("Window");
+        // Shodan program = new Shodan("Window");
+
+        Roster roster = Roster.importSSPOT("");
     }
 }

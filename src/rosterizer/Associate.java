@@ -28,11 +28,11 @@ public class Associate {
 
     public Associate(String login) { this.LOGIN = login; }
 
-    public String getLOGIN() { return LOGIN; }
+    public String getLogin() { return LOGIN; }
     public double getRate() { return rate; }
     public double getAverageRate() { return averageRate; }
     public double getInferredTime() { return inferredTime; }
-    public List<TrainedRole> getROLES() { return ROLES; }
+    public List<TrainedRole> getRoles() { return ROLES; }
 
     public void setRate(double rate) { this.rate = rate; }
     public void setAverageRate(double averageRate) { this.averageRate = averageRate; }
