@@ -36,8 +36,11 @@ public class Roster {
             e.printStackTrace();
         }
 
-        for(String s : rows)
+        int count = 0;
+        for(String s : rows) {
+            System.out.printf("%d : %s\n", count++, s);
             result.getScheduledAssociates().add(new Associate(s.split(",")[1]));
+        }
 
         return result;
     }
