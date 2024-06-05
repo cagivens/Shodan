@@ -2,18 +2,18 @@ package rosterizer;
 
 public class Associate {
 
-    public static int ROLE_AMBASSADOR = 0b000000000001;
-    public static int ROLE_EOL = 0b000000000010;
-    public static int ROLE_PS = 0b000000000100;
-    public static int ROLE_WATERSPIDER = 0b000000001000;
-    public static int ROLE_REFURB = 0b000000010000;
-    public static int ROLE_WHD = 0b000000100000;
-    public static int ROLE_RECOVERY = 0b000001000000;
-    public static int ROLE_OUTBOUND = 0b000010000000;
-    public static int ROLE_SHOES = 0b000100000000;
-    public static int ROLE_ICQA = 0b001000000000;
-    public static int ROLE_TDR = 0b010000000000;
-    public static int ROLE_PIT = 0b100000000000;
+    public static int ROLE_AMBASSADOR = 0b0000_00000001;
+    public static int ROLE_EOL = 0b0000_00000010;
+    public static int ROLE_PS = 0b0000_00000100;
+    public static int ROLE_WATERSPIDER = 0b0000_00001000;
+    public static int ROLE_REFURB = 0b0000_00010000;
+    public static int ROLE_WHD = 0b0000_00100000;
+    public static int ROLE_RECOVERY = 0b0000_01000000;
+    public static int ROLE_OUTBOUND = 0b0000_10000000;
+    public static int ROLE_SHOES = 0b0001_00000000;
+    public static int ROLE_ICQA = 0b0010_00000000;
+    public static int ROLE_TDR = 0b0100_00000000;
+    public static int ROLE_PIT = 0b1000_00000000;
 
 
     private final String LOGIN;
