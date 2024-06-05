@@ -1,8 +1,5 @@
 package rosterizer;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Associate {
 
     public static int ROLE_AMBASSADOR = 0b000000000001;
@@ -21,7 +18,6 @@ public class Associate {
 
     private final String LOGIN;
     private int roles = 0;
-    private double averageRate = 0.0;
     private double rate = 0.0;
     private double inferredTime = 0.0;
 
@@ -29,15 +25,18 @@ public class Associate {
 
     public String getLogin() { return LOGIN; }
     public double getRate() { return rate; }
-    public double getAverageRate() { return averageRate; }
     public double getInferredTime() { return inferredTime; }
-    public boolean hasRole(int role) { return false; }
 
     public void setRate(double rate) { this.rate = rate; }
-    public void setAverageRate(double averageRate) { this.averageRate = averageRate; }
     public void setInferredTime(double inferredTime) { this.inferredTime = inferredTime; }
+    public void addTrainedRole(int newRole) { roles = roles | newRole; }
 
-    public void addTrainedRole(int newRole) {
-        roles = roles | newRole;
+    public boolean hasRole(int role) {
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return LOGIN + " {" + roles + "}";
     }
 }
