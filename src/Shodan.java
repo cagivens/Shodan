@@ -2,7 +2,6 @@ import rosterizer.Roster;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
-import java.io.FileNotFoundException;
 
 public class Shodan extends JFrame {
 
@@ -13,7 +12,7 @@ public class Shodan extends JFrame {
         setVisible(true);
     }
 
-    private static String getFilepath() {
+    private static String getOpenFilepath() {
         JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView());
         int r = chooser.showOpenDialog(null);
 
@@ -25,6 +24,6 @@ public class Shodan extends JFrame {
     public static void main(String[] args) {
         // Shodan program = new Shodan("Window");
 
-        Roster roster = Roster.importSSPOT(getFilepath());
+        Roster roster = Roster.importSSPOT(getOpenFilepath());
     }
 }
