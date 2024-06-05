@@ -1,3 +1,4 @@
+import rosterizer.Associate;
 import rosterizer.Roster;
 
 import javax.swing.*;
@@ -25,5 +26,10 @@ public class Shodan extends JFrame {
         // Shodan program = new Shodan("Window");
 
         Roster roster = Roster.importSSPOT(getOpenFilepath());
+        Roster.importTrainingQuip(getOpenFilepath(), roster.getScheduledAssociates());
+
+        int count = 0;
+        for(Associate a : roster.getScheduledAssociates().values())
+            System.out.printf("%d: %s\n", count++, a.toString());
     }
 }
