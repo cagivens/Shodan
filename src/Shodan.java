@@ -31,5 +31,7 @@ public class Shodan extends JFrame {
         int count = 0;
         for(Associate a : roster.getScheduledAssociates().values())
             System.out.printf("%d: %s\n", count++, a.toString());
+
+        System.out.println("...");
     }
 }

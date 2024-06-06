@@ -15,7 +15,6 @@ public class Associate {
     public static int ROLE_TDR = 0b0100_00000000;
     public static int ROLE_PIT = 0b1000_00000000;
 
-
     private final String LOGIN;
     private int roles = 0;
     private double rate = 0.0;

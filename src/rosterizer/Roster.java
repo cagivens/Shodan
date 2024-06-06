@@ -2,6 +2,7 @@ package rosterizer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -24,6 +25,9 @@ public class Roster {
         Roster result = new Roster();
         LinkedList<String> rows = new LinkedList<>();
 
+        if(filepath.isEmpty())
+            return new Roster();
+
         try {
             File file = new File(filepath);
             Scanner fileScanner = new Scanner(file);
@@ -42,7 +46,7 @@ public class Roster {
             Associate a = new Associate(r.split(",")[1].replace("\"", ""));
             result.getScheduledAssociates().put(a.getLogin(), a);
 
-            System.out.printf("%d : %s\n", count++, a.getLogin());
+            System.out.printf("%d: %s\n", count++, a.getLogin());
         }
 
         return result;
