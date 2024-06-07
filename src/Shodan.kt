@@ -1,35 +1,30 @@
-import rosterizer.Roster;
+import java.awt.Dimension
+import javax.swing.JFrame
+import javax.swing.JMenu
+import javax.swing.JMenuBar
+import javax.swing.JMenuItem
 
-import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
+fun main() {
+    val window = JFrame("Shodan")
+    val menuBar = buildMenuBar()
 
-public class Shodan {
+    window.size = Dimension(800, 600)
+    window.jMenuBar = menuBar
 
-    private static String getOpenFilepath() {
-        JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView());
-        int r = chooser.showOpenDialog(null);
+    window.isResizable = false
+    window.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
+    window.isVisible = true
+}
 
-        if(r == JFileChooser.APPROVE_OPTION)
-            return chooser.getSelectedFile().getAbsolutePath();
-        return "";
-    }
+fun buildMenuBar(): JMenuBar {
+    val result = JMenuBar()
+    val fileMenu = JMenu("File")
+    val exportRoster = JMenuItem("Export Roster")
+    val importSSPOT = JMenuItem("Import SSPOT")
 
-    public static void main(String[] args) {
-        JFrame window = new JFrame("Shodan");
+    result.add(fileMenu)
+    fileMenu.add(exportRoster)
+    fileMenu.add(importSSPOT)
 
-        JMenuBar menuBar = new JMenuBar();
-        JMenu file = new JMenu("File");
-        JMenuItem exportRoster = new JMenuItem("Export Roster");
-        JMenuItem importSSPOT = new JMenuItem("Import SSPOT");
-
-        menuBar.add(file);
-        file.add(exportRoster);
-        file.add(importSSPOT);
-        window.setJMenuBar(menuBar);
-
-        window.setSize(800, 600);
-        window.setResizable(false);
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setVisible(true);
-    }
+    return result
 }
