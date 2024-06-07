@@ -1,17 +1,9 @@
-import rosterizer.Associate;
 import rosterizer.Roster;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 
-public class Shodan extends JFrame {
-
-    public Shodan(String title) {
-        super(title);
-
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setVisible(true);
-    }
+public class Shodan {
 
     private static String getOpenFilepath() {
         JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView());
@@ -23,15 +15,21 @@ public class Shodan extends JFrame {
     }
 
     public static void main(String[] args) {
-        // Shodan program = new Shodan("Window");
+        JFrame window = new JFrame("Shodan");
 
-        Roster roster = Roster.importSSPOT(getOpenFilepath());
-        Roster.importTrainingQuip(getOpenFilepath(), roster.getScheduledAssociates());
+        JMenuBar menuBar = new JMenuBar();
+        JMenu file = new JMenu("File");
+        JMenuItem exportRoster = new JMenuItem("Export Roster");
+        JMenuItem importSSPOT = new JMenuItem("Import SSPOT");
 
-        int count = 0;
-        for(Associate a : roster.getScheduledAssociates().values())
-            System.out.printf("%d: %s\n", count++, a.toString());
+        menuBar.add(file);
+        file.add(exportRoster);
+        file.add(importSSPOT);
+        window.setJMenuBar(menuBar);
 
-        System.out.println("...");
+        window.setSize(800, 600);
+        window.setResizable(false);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setVisible(true);
     }
 }

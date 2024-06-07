@@ -2,7 +2,6 @@ package rosterizer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -10,7 +9,7 @@ import java.util.Scanner;
 public class Roster {
     HashMap<String, Associate> scheduledAssociates;
 
-    private Roster() {
+    public Roster() {
         scheduledAssociates = new HashMap<>();
     }
 
@@ -21,12 +20,11 @@ public class Roster {
         return "";
     }
 
-    public static Roster importSSPOT(String filepath) {
-        Roster result = new Roster();
+    public void importSSPOT(String filepath) {
         LinkedList<String> rows = new LinkedList<>();
 
         if(filepath.isEmpty())
-            return new Roster();
+            return;
 
         try {
             File file = new File(filepath);
@@ -44,12 +42,10 @@ public class Roster {
         rows.removeFirst();
         for(String r : rows) {
             Associate a = new Associate(r.split(",")[1].replace("\"", ""));
-            result.getScheduledAssociates().put(a.getLogin(), a);
+            scheduledAssociates.put(a.getLogin(), a);
 
             System.out.printf("%d: %s\n", count++, a.getLogin());
         }
-
-        return result;
     }
 
     public static void importTrainingQuip(String filepath, HashMap<String, Associate> associates) {
@@ -99,7 +95,5 @@ public class Roster {
                 else if(process.equals("whd"))
                     associates.get(login).addTrainedRole(Associate.ROLE_WHD);
         }
-
-        System.out.println("Training quip imported!");
     }
 }
