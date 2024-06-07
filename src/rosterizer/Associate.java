@@ -30,9 +30,7 @@ public class Associate {
     public void setInferredTime(double inferredTime) { this.inferredTime = inferredTime; }
     public void addTrainedRole(int newRole) { roles = roles | newRole; }
 
-    public boolean hasRole(int role) {
-        return false;
-    }
+    public boolean hasRole(int role) { return (roles & role) == role; }
 
     @Override
     public String toString() {
