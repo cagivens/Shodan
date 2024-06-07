@@ -1,39 +1,29 @@
-package rosterizer;
+package rosterizer
 
-public class Associate {
+class Associate(val login: String) {
+    companion object {
+        const val ROLE_AMBASSADOR = 1
+        const val ROLE_EOL = 2
+        const val ROLE_PS = 4
+        const val ROLE_WATERSPIDER = 8
+        const val ROLE_REFURB = 16
+        const val ROLE_WHD = 32
+        const val ROLE_RECOVERY = 64
+        const val ROLE_OUTBOUND = 128
+        const val ROLE_SHOES = 256
+        const val ROLE_ICQA = 512
+        const val ROLE_TDR = 1024
+        const val ROLE_PIT = 2048
+    }
 
-    public static int ROLE_AMBASSADOR = 0b0000_00000001;
-    public static int ROLE_EOL = 0b0000_00000010;
-    public static int ROLE_PS = 0b0000_00000100;
-    public static int ROLE_WATERSPIDER = 0b0000_00001000;
-    public static int ROLE_REFURB = 0b0000_00010000;
-    public static int ROLE_WHD = 0b0000_00100000;
-    public static int ROLE_RECOVERY = 0b0000_01000000;
-    public static int ROLE_OUTBOUND = 0b0000_10000000;
-    public static int ROLE_SHOES = 0b0001_00000000;
-    public static int ROLE_ICQA = 0b0010_00000000;
-    public static int ROLE_TDR = 0b0100_00000000;
-    public static int ROLE_PIT = 0b1000_00000000;
+    private var roles = 0
+    private var rate = 0.0
+    private var inferredTime = 0.0
 
-    private final String LOGIN;
-    private int roles = 0;
-    private double rate = 0.0;
-    private double inferredTime = 0.0;
+    fun addTrainedRole(newRole: Int) { roles = roles or newRole }
+    fun hasRole(role: Int): Boolean = (roles and role) == role
 
-    public Associate(String login) { this.LOGIN = login; }
-
-    public String getLogin() { return LOGIN; }
-    public double getRate() { return rate; }
-    public double getInferredTime() { return inferredTime; }
-
-    public void setRate(double rate) { this.rate = rate; }
-    public void setInferredTime(double inferredTime) { this.inferredTime = inferredTime; }
-    public void addTrainedRole(int newRole) { roles = roles | newRole; }
-
-    public boolean hasRole(int role) { return (roles & role) == role; }
-
-    @Override
-    public String toString() {
-        return LOGIN + " {" + roles + "}";
+    override fun toString(): String {
+        return "$login {$roles}"
     }
 }
