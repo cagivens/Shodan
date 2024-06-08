@@ -1,8 +1,7 @@
 import java.awt.Dimension
-import javax.swing.JFrame
-import javax.swing.JMenu
-import javax.swing.JMenuBar
-import javax.swing.JMenuItem
+import javax.swing.*
+import javax.swing.filechooser.FileSystemView
+
 
 fun main() {
     val window = JFrame("Shodan")
@@ -27,4 +26,21 @@ fun buildMenuBar(): JMenuBar {
     fileMenu.add(importSSPOT)
 
     return result
+}
+
+fun showSaveDialog(): String {
+    val chooser = JFileChooser(FileSystemView.getFileSystemView())
+    val r = chooser.showSaveDialog(null)
+
+    if (r == JFileChooser.APPROVE_OPTION)
+        return chooser.selectedFile.absolutePath
+    return ""
+}
+fun showOpenDialog(): String {
+    val chooser = JFileChooser(FileSystemView.getFileSystemView())
+    val r = chooser.showOpenDialog(null)
+
+    if (r == JFileChooser.APPROVE_OPTION)
+        return chooser.selectedFile.absolutePath
+    return ""
 }

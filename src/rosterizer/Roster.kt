@@ -3,10 +3,9 @@ package rosterizer
 import java.io.File
 import java.io.FileNotFoundException
 import java.util.*
-import kotlin.math.log
 
 class Roster {
-    val scheduledAssociates = HashMap<String, Associate>()
+    private val scheduledAssociates = HashMap<String, Associate>()
 
     fun importSSPOT(filepath: String = "") {
         if(filepath.isEmpty()) return
@@ -21,7 +20,7 @@ class Roster {
                 rows.add(scanner.nextLine())
             scanner.close()
         } catch(exception: FileNotFoundException) {
-            println("FileNotFoundException thrown while importting SSPOT roster")
+            println("FileNotFoundException thrown while importing SSPOT roster")
             return
         }
 
@@ -33,7 +32,7 @@ class Roster {
         }
     }
 
-    fun importTrainingQUIP(filepath: String, associates: HashMap<String, Associate>) {
+    fun importTrainingQUIP(filepath: String = "", associates: HashMap<String, Associate>) {
         if(filepath.isEmpty()) return
 
         val rows = LinkedList<String>()
@@ -46,7 +45,7 @@ class Roster {
                 rows.add(scanner.nextLine())
             scanner.close()
         } catch(exception: FileNotFoundException) {
-            println("FileNotFoundException thrown while importting SSPOT roster")
+            println("FileNotFoundException thrown while importing Training QUIP")
             return
         }
 
@@ -57,30 +56,20 @@ class Roster {
             val processTrained: String = rowAsArray[6].lowercase()
 
             if (associates.containsKey(loginColValue))
-                if (processTrained == "ambassador")
-                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_AMBASSADOR)
-                else if (processTrained == "audit")
-                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_RECOVERY)
-                else if (processTrained == "end of line")
-                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_EOL)
-                else if (processTrained == "outbound")
-                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_OUTBOUND)
-                else if (processTrained == "pit")
-                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_PIT)
-                else if (processTrained == "problem solve")
-                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_PS)
-                else if (processTrained == "refurb")
-                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_REFURB)
-                else if (processTrained == "shoe icqa")
-                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_ICQA)
-                else if (processTrained == "shoe processing")
-                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_SHOES)
-                else if (processTrained == "tdr")
-                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_TDR)
-                else if (processTrained == "water spider")
-                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_WATERSPIDER)
-                else if (processTrained == "whd")
-                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_WHD)
+                when (processTrained) {
+                    "ambassador" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_AMBASSADOR)
+                    "audit" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_RECOVERY)
+                    "end of line" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_EOL)
+                    "outbound" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_OUTBOUND)
+                    "pit" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_PIT)
+                    "problem solve" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_PS)
+                    "refurb" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_REFURB)
+                    "shoe icqa" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_ICQA)
+                    "shoe processing" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_SHOES)
+                    "tdr" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_TDR)
+                    "water spider" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_WATERSPIDER)
+                    "whd" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_WHD)
+                }
         }
     }
 
