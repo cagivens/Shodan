@@ -1,99 +1,90 @@
-package rosterizer;
+package rosterizer
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.io.File
+import java.io.FileNotFoundException
+import java.util.*
+import kotlin.math.log
 
-public class Roster {
-    HashMap<String, Associate> scheduledAssociates;
+class Roster {
+    val scheduledAssociates = HashMap<String, Associate>()
 
-    public Roster() {
-        scheduledAssociates = new HashMap<>();
-    }
+    fun importSSPOT(filepath: String = "") {
+        if(filepath.isEmpty()) return
 
-    public HashMap<String, Associate> getScheduledAssociates() { return scheduledAssociates; }
-
-    @Override
-    public String toString() {
-        return "";
-    }
-
-    public void importSSPOT(String filepath) {
-        LinkedList<String> rows = new LinkedList<>();
-
-        if(filepath.isEmpty())
-            return;
+        val rows = LinkedList<String>()
 
         try {
-            File file = new File(filepath);
-            Scanner fileScanner = new Scanner(file);
-            while(fileScanner.hasNextLine())
-                rows.add(fileScanner.nextLine());
-            fileScanner.close();
-        } catch(FileNotFoundException e) {
-            System.out.println("FileNotFoundException thrown while importing SSPOT roster");
-            //noinspection CallToPrintStackTrace
-            e.printStackTrace();
+            val file = File(filepath)
+            val scanner = Scanner(file)
+
+            while(scanner.hasNextLine())
+                rows.add(scanner.nextLine())
+            scanner.close()
+        } catch(exception: FileNotFoundException) {
+            println("FileNotFoundException thrown while importting SSPOT roster")
+            return
         }
 
-        int count = 0;
-        rows.removeFirst();
-        for(String r : rows) {
-            Associate a = new Associate(r.split(",")[1].replace("\"", ""));
-            scheduledAssociates.put(a.getLogin(), a);
-
-            System.out.printf("%d: %s\n", count++, a.getLogin());
+        rows.removeFirst()
+        for(row in rows) {
+            val assoc = Associate(row.split(",")[1].replace("\"", ""))
+            scheduledAssociates[assoc.login] = assoc
+            println("${scheduledAssociates.size}: ${assoc.login}")
         }
     }
 
-    public static void importTrainingQuip(String filepath, HashMap<String, Associate> associates) {
-        LinkedList<String> rows = new LinkedList<>();
+    fun importTrainingQUIP(filepath: String, associates: HashMap<String, Associate>) {
+        if(filepath.isEmpty()) return
+
+        val rows = LinkedList<String>()
 
         try {
-            File file = new File(filepath);
-            Scanner fileScanner = new Scanner(file);
-            while(fileScanner.hasNextLine())
-                rows.add(fileScanner.nextLine());
-            fileScanner.close();
-        } catch(FileNotFoundException e) {
-            System.out.println("FileNotFoundException thrown while importing Training QUIP roster");
-            //noinspection CallToPrintStackTrace
-            e.printStackTrace();
+            val file = File(filepath)
+            val scanner = Scanner(file)
+
+            while(scanner.hasNextLine())
+                rows.add(scanner.nextLine())
+            scanner.close()
+        } catch(exception: FileNotFoundException) {
+            println("FileNotFoundException thrown while importting SSPOT roster")
+            return
         }
 
-        rows.removeFirst();
-        for(String s : rows) {
-            String[] row = s.substring(s.lastIndexOf('"') + 1, s.length() - 1).split(",");
-            String login = row[1];
-            String process = row[6].toLowerCase();
+        rows.removeFirst()
+        for(row in rows) {
+            val rowAsArray = row.substring(row.lastIndexOf('"') + 1, row.length - 1).split(",")
+            val loginColValue: String = rowAsArray[1]
+            val processTrained: String = rowAsArray[6].lowercase()
 
-            if(associates.containsKey(login))
-                if(process.equals("ambassador"))
-                    associates.get(login).addTrainedRole(Associate.ROLE_AMBASSADOR);
-                else if(process.equals("audit"))
-                    associates.get(login).addTrainedRole(Associate.ROLE_RECOVERY);
-                else if(process.equals("end of line"))
-                    associates.get(login).addTrainedRole(Associate.ROLE_EOL);
-                else if(process.equals("outbound"))
-                    associates.get(login).addTrainedRole(Associate.ROLE_OUTBOUND);
-                else if(process.equals("pit"))
-                    associates.get(login).addTrainedRole(Associate.ROLE_PIT);
-                else if(process.equals("problem solve"))
-                    associates.get(login).addTrainedRole(Associate.ROLE_PS);
-                else if(process.equals("refurb"))
-                    associates.get(login).addTrainedRole(Associate.ROLE_REFURB);
-                else if(process.equals("shoe icqa"))
-                    associates.get(login).addTrainedRole(Associate.ROLE_ICQA);
-                else if(process.equals("shoe processing"))
-                    associates.get(login).addTrainedRole(Associate.ROLE_SHOES);
-                else if(process.equals("tdr"))
-                    associates.get(login).addTrainedRole(Associate.ROLE_TDR);
-                else if(process.equals("water spider"))
-                    associates.get(login).addTrainedRole(Associate.ROLE_WATERSPIDER);
-                else if(process.equals("whd"))
-                    associates.get(login).addTrainedRole(Associate.ROLE_WHD);
+            if (associates.containsKey(loginColValue))
+                if (processTrained == "ambassador")
+                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_AMBASSADOR)
+                else if (processTrained == "audit")
+                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_RECOVERY)
+                else if (processTrained == "end of line")
+                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_EOL)
+                else if (processTrained == "outbound")
+                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_OUTBOUND)
+                else if (processTrained == "pit")
+                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_PIT)
+                else if (processTrained == "problem solve")
+                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_PS)
+                else if (processTrained == "refurb")
+                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_REFURB)
+                else if (processTrained == "shoe icqa")
+                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_ICQA)
+                else if (processTrained == "shoe processing")
+                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_SHOES)
+                else if (processTrained == "tdr")
+                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_TDR)
+                else if (processTrained == "water spider")
+                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_WATERSPIDER)
+                else if (processTrained == "whd")
+                    associates[loginColValue]!!.addTrainedRole(Associate.ROLE_WHD)
         }
+    }
+
+    override fun toString(): String {
+        return ""
     }
 }
