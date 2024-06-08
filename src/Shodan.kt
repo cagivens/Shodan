@@ -1,3 +1,4 @@
+import rosterizer.Roster
 import java.awt.Dimension
 import javax.swing.*
 import javax.swing.filechooser.FileSystemView
@@ -5,7 +6,18 @@ import javax.swing.filechooser.FileSystemView
 
 fun main() {
     val window = JFrame("Shodan")
-    val menuBar = buildMenuBar()
+    val roster = Roster()
+
+    val menuBar = JMenuBar()
+    val fileMenu = JMenu("File")
+    val exportRoster = JMenuItem("Export Roster")
+    val importSSPOT = JMenuItem("Import SSPOT")
+
+    importSSPOT.addActionListener { roster.importSSPOT(showOpenDialog()) }
+
+    menuBar.add(fileMenu)
+    fileMenu.add(exportRoster)
+    fileMenu.add(importSSPOT)
 
     window.size = Dimension(800, 600)
     window.jMenuBar = menuBar
@@ -13,19 +25,6 @@ fun main() {
     window.isResizable = false
     window.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
     window.isVisible = true
-}
-
-fun buildMenuBar(): JMenuBar {
-    val result = JMenuBar()
-    val fileMenu = JMenu("File")
-    val exportRoster = JMenuItem("Export Roster")
-    val importSSPOT = JMenuItem("Import SSPOT")
-
-    result.add(fileMenu)
-    fileMenu.add(exportRoster)
-    fileMenu.add(importSSPOT)
-
-    return result
 }
 
 fun showSaveDialog(): String {

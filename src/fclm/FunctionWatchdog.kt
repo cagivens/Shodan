@@ -1,4 +1,4 @@
-package fclm;
+package fclm
 
-public class FunctionWatchdog {
+class FunctionWatchdog(handle: String) : Watchdog(handle) {
 }
