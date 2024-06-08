@@ -10,14 +10,24 @@ fun main() {
 
     val menuBar = JMenuBar()
     val fileMenu = JMenu("File")
+    val assocMenu = JMenu("Associates")
+
     val exportRoster = JMenuItem("Export Roster")
     val importSSPOT = JMenuItem("Import SSPOT")
 
+    val importTrainingQuip = JMenuItem("Import Training Quip")
+
     importSSPOT.addActionListener { roster.importSSPOT(showOpenDialog()) }
 
+    importTrainingQuip.addActionListener { roster.importTrainingQUIP(showOpenDialog()) }
+
     menuBar.add(fileMenu)
+    menuBar.add(assocMenu)
+
     fileMenu.add(exportRoster)
     fileMenu.add(importSSPOT)
+
+    assocMenu.add(importTrainingQuip)
 
     window.size = Dimension(800, 600)
     window.jMenuBar = menuBar

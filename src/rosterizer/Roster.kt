@@ -33,7 +33,7 @@ class Roster {
         }
     }
 
-    fun importTrainingQUIP(filepath: String = "", associates: HashMap<String, Associate>) {
+    fun importTrainingQUIP(filepath: String = "") {
         if(filepath.isEmpty()) return
 
         val rows = LinkedList<String>()
@@ -56,20 +56,20 @@ class Roster {
             val loginColValue: String = rowAsArray[1]
             val processTrained: String = rowAsArray[6].lowercase()
 
-            if (associates.containsKey(loginColValue))
+            if (scheduledAssociates.containsKey(loginColValue))
                 when (processTrained) {
-                    "ambassador" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_AMBASSADOR)
-                    "audit" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_RECOVERY)
-                    "end of line" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_EOL)
-                    "outbound" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_OUTBOUND)
-                    "pit" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_PIT)
-                    "problem solve" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_PS)
-                    "refurb" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_REFURB)
-                    "shoe icqa" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_ICQA)
-                    "shoe processing" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_SHOES)
-                    "tdr" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_TDR)
-                    "water spider" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_WATERSPIDER)
-                    "whd" -> associates[loginColValue]!!.addTrainedRole(Associate.ROLE_WHD)
+                    "ambassador" -> scheduledAssociates[loginColValue]!!.addTrainedRole(Associate.ROLE_AMBASSADOR)
+                    "audit" -> scheduledAssociates[loginColValue]!!.addTrainedRole(Associate.ROLE_RECOVERY)
+                    "end of line" -> scheduledAssociates[loginColValue]!!.addTrainedRole(Associate.ROLE_EOL)
+                    "outbound" -> scheduledAssociates[loginColValue]!!.addTrainedRole(Associate.ROLE_OUTBOUND)
+                    "pit" -> scheduledAssociates[loginColValue]!!.addTrainedRole(Associate.ROLE_PIT)
+                    "problem solve" -> scheduledAssociates[loginColValue]!!.addTrainedRole(Associate.ROLE_PS)
+                    "refurb" -> scheduledAssociates[loginColValue]!!.addTrainedRole(Associate.ROLE_REFURB)
+                    "shoe icqa" -> scheduledAssociates[loginColValue]!!.addTrainedRole(Associate.ROLE_ICQA)
+                    "shoe processing" -> scheduledAssociates[loginColValue]!!.addTrainedRole(Associate.ROLE_SHOES)
+                    "tdr" -> scheduledAssociates[loginColValue]!!.addTrainedRole(Associate.ROLE_TDR)
+                    "water spider" -> scheduledAssociates[loginColValue]!!.addTrainedRole(Associate.ROLE_WATERSPIDER)
+                    "whd" -> scheduledAssociates[loginColValue]!!.addTrainedRole(Associate.ROLE_WHD)
                 }
         }
     }
