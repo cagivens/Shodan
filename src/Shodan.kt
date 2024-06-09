@@ -7,31 +7,28 @@ import javax.swing.filechooser.FileSystemView
 fun main() {
     val window = JFrame("Shodan")
     val roster = Roster()
+    val cells = emptyArray<Array<JPanel>>()
 
+    // Initializing menu bar
     val menuBar = JMenuBar()
     val fileMenu = JMenu("File")
     val assocMenu = JMenu("Associates")
-
     val exportRoster = JMenuItem("Export Roster")
     val importSSPOT = JMenuItem("Import SSPOT")
-
     val importTrainingQuip = JMenuItem("Import Training Quip")
-
+    // Creating menu bar action listeners
     importSSPOT.addActionListener { roster.importSSPOT(showOpenDialog()) }
-
     importTrainingQuip.addActionListener { roster.importTrainingQUIP(showOpenDialog()) }
-
+    // Adding menu items to menu bar
     menuBar.add(fileMenu)
     menuBar.add(assocMenu)
-
     fileMenu.add(exportRoster)
     fileMenu.add(importSSPOT)
-
     assocMenu.add(importTrainingQuip)
 
+    // Setting window parameters
     window.size = Dimension(800, 600)
     window.jMenuBar = menuBar
-
     window.isResizable = false
     window.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
     window.isVisible = true
