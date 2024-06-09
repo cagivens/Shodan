@@ -7,7 +7,7 @@ import javax.swing.filechooser.FileSystemView
 fun main() {
     val window = JFrame("Shodan")
     val roster = Roster()
-    val cells = emptyArray<Array<JPanel>>()
+    val sheet = ArrayList<ArrayList<JPanel>>()
 
     // Initializing menu bar
     val menuBar = JMenuBar()
