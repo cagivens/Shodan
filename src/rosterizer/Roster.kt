@@ -7,6 +7,7 @@ import java.util.Scanner
 
 class Roster {
     private val scheduledAssociates = HashMap<String, Associate>()
+    private val processors = HashMap<Int, List<Associate>>()
 
     fun importSSPOT(filepath: String = "") {
         if(filepath.isEmpty()) return

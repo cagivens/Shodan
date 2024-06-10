@@ -1,5 +1,6 @@
 import rosterizer.Roster
 import java.awt.Dimension
+import java.awt.GridLayout
 import javax.swing.*
 import javax.swing.filechooser.FileSystemView
 
@@ -7,7 +8,7 @@ import javax.swing.filechooser.FileSystemView
 fun main() {
     val window = JFrame("Shodan")
     val roster = Roster()
-    val sheet = ArrayList<ArrayList<JPanel>>()
+    val sheet = HashMap<Char, Array<JPanel>>()
 
     // Initializing menu bar
     val menuBar = JMenuBar()
@@ -27,11 +28,16 @@ fun main() {
     assocMenu.add(importTrainingQuip)
 
     // Setting window parameters
-    window.size = Dimension(800, 600)
+    window.size = Dimension(400, 200)
     window.jMenuBar = menuBar
     window.isResizable = false
     window.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
     window.isVisible = true
+}
+
+fun openRosterizer(roster: Roster) {
+    val rosterizerWindow = JFrame()
+    rosterizerWindow.isVisible = true
 }
 
 fun showSaveDialog(): String {
