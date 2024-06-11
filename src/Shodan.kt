@@ -1,6 +1,8 @@
+import fclm.FunctionWatchdog
+import fclm.ProcessWatchdog
+import fclm.TOTWatchdog
 import rosterizer.Roster
 import java.awt.Dimension
-import java.awt.GridLayout
 import javax.swing.*
 import javax.swing.filechooser.FileSystemView
 
@@ -38,6 +40,11 @@ fun main() {
 fun openRosterizer(roster: Roster) {
     val rosterizerWindow = JFrame()
     rosterizerWindow.isVisible = true
+}
+
+fun openWatchdogs(function: FunctionWatchdog, proc: ProcessWatchdog, tot: TOTWatchdog) {
+    val watchdog = JFrame()
+    watchdog.isVisible = true
 }
 
 fun showSaveDialog(): String {
