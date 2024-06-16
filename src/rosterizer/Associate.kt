@@ -10,7 +10,7 @@ class Associate(val login: String) {
         const val ROLE_WHD = 32
         const val ROLE_RECOVERY = 64
         const val ROLE_OUTBOUND = 128
-        const val ROLE_SHOES = 256
+        const val ROLE_PROCESS = 256
         const val ROLE_ICQA = 512
         const val ROLE_TDR = 1024
         const val ROLE_PIT = 2048
