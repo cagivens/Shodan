@@ -1,7 +1,6 @@
 import fclm.FunctionWatchdog
 import fclm.ProcessWatchdog
 import fclm.TOTWatchdog
-import rosterizer.Associate
 import rosterizer.Roster
 import java.awt.Dimension
 import javax.swing.*
@@ -35,6 +34,11 @@ fun main() {
     window.isVisible = true
 }
 
+fun loadTrainedRolesInternalFile() {
+    // This should be implemented relatively close to the end of development
+    // due to the need for an installer
+    TODO("Function checks the local dir for trained indirect roles")
+}
 fun openRosterizer(roster: Roster) {
     val rosterizerWindow = JFrame()
     rosterizerWindow.isVisible = true
