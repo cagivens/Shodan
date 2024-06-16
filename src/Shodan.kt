@@ -1,6 +1,7 @@
 import fclm.FunctionWatchdog
 import fclm.ProcessWatchdog
 import fclm.TOTWatchdog
+import rosterizer.Associate
 import rosterizer.Roster
 import java.awt.Dimension
 import javax.swing.*
@@ -21,6 +22,10 @@ fun main() {
     menuBar.add(fileMenu)
     menuBar.add(rosterMenu)
     menuBar.add(watchdogMenu)
+
+    roster.importSSPOT(showOpenDialog())
+    roster.importTrainingQUIP(showOpenDialog())
+    roster.randomizeRoles()
 
     // Setting window parameters
     window.size = Dimension(400, 200)
