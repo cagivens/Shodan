@@ -9,7 +9,7 @@ import javax.swing.filechooser.FileSystemView
 
 fun main() {
     val window = JFrame("Shodan")
-    val roster = Roster()
+    val roster = Roster(listOf("caleigiv", "todpaula"))
     val sheet = HashMap<Char, Array<JPanel>>()
 
     // Initializing menu bar

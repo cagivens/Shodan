@@ -5,10 +5,9 @@ import java.io.FileNotFoundException
 import java.util.LinkedList
 import java.util.Scanner
 
-class Roster {
+class Roster(val processAssistants: List<String>) {
     private val scheduledAssociates = HashMap<String, Associate>()
     private val assignedRoles = HashMap<Int, LinkedList<Associate>>()
-    private val processAssistants = LinkedList<String>()
 
     fun importSSPOT(filepath: String = "") {
         if(filepath.isEmpty()) return
@@ -30,6 +29,10 @@ class Roster {
         rows.removeFirst()
         for(row in rows) {
             val assoc = Associate(row.split(",")[1].replace("\"", ""))
+
+            // Filtering out process assistants from SSPOT roster
+            if(processAssistants.contains(assoc.login))
+                continue
             scheduledAssociates[assoc.login] = assoc
             //println("${scheduledAssociates.size}: ${assoc.login}")
         }
