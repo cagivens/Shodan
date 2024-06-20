@@ -5,7 +5,7 @@ import java.io.FileNotFoundException
 import java.util.LinkedList
 import java.util.Scanner
 
-class Roster(val processAssistants: List<String>) {
+class Roster(private val processAssistants: List<String>) {
     private val scheduledAssociates = HashMap<String, Associate>()
     private val assignedRoles = HashMap<Int, LinkedList<Associate>>()
 
@@ -105,6 +105,7 @@ class Roster(val processAssistants: List<String>) {
         assignIndirectRole(Associate.ROLE_ICQA, 1, "ICQA")
         assignIndirectRole(Associate.ROLE_RECOVERY, 1, "Recovery")
         assignIndirectRole(Associate.ROLE_REFURB, 2, "Refurb")
+        assignIndirectRole(Associate.ROLE_WHD, 1, "Warehouse Deals")
 
         // Assigning whatever associates remain to direct process
         assignedRoles[Associate.ROLE_PROCESS] = LinkedList()
@@ -118,6 +119,13 @@ class Roster(val processAssistants: List<String>) {
     fun getAssociateLoginsByRole(role: Int): List<String>? = assignedRoles[role]?.map{it.login}
 
     override fun toString(): String {
-        return ""
+        val result = "Problem Solve,,Waterspider,,Outbound,,EOL,,ICQA,,Recovery,,Refurb,,WHD\n"
+
+        var i = 0
+        while(i < assignedRoles[Associate.ROLE_PROCESS]!!.size) {
+
+        }
+
+        return result
     }
 }

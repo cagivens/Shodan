@@ -17,8 +17,9 @@ class Associate(val login: String) {
     }
 
     private var roles = 0
-    private var rate = 0.0
-    private var inferredTime = 0.0
+    private var roleBlacklist = 0
+    private var averageRate = 0.0
+    private var averageInferredTime = 0.0
 
     fun addTrainedRole(newRole: Int) { roles = roles or newRole }
     fun hasRole(role: Int): Boolean = (roles and role) == role
