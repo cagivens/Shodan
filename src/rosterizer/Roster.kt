@@ -81,6 +81,11 @@ class Roster(private val processAssistants: List<String>) {
     }
 
     fun randomizeRoles() {
+        // Resetting role assignments
+        for(key in assignedRoles.keys)
+            if(!assignedRoles[key]!!.isEmpty())
+                assignedRoles[key]!!.clear()
+
         val associateList = scheduledAssociates.keys
 
         fun assignIndirectRole(role: Int, amount: Int, msg: String) {
