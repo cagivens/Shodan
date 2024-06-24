@@ -103,14 +103,14 @@ class Roster(private val processAssistants: List<String>) {
         }
 
         // Assigning indirect roles
+        assignIndirectRole(Associate.ROLE_WHD, 1, "Warehouse Deals")
         assignIndirectRole(Associate.ROLE_PS, 5, "Problem Solvers")
+        assignIndirectRole(Associate.ROLE_RECOVERY, 1, "Recovery")
         assignIndirectRole(Associate.ROLE_WATERSPIDER, 4, "Waterspiders")
         assignIndirectRole(Associate.ROLE_OUTBOUND, 1, "Outbound")
         assignIndirectRole(Associate.ROLE_EOL, 3, "EOL")
         assignIndirectRole(Associate.ROLE_ICQA, 1, "ICQA")
-        assignIndirectRole(Associate.ROLE_RECOVERY, 1, "Recovery")
         assignIndirectRole(Associate.ROLE_REFURB, 2, "Refurb")
-        assignIndirectRole(Associate.ROLE_WHD, 1, "Warehouse Deals")
 
         // Assigning whatever associates remain to direct process
         assignedRoles[Associate.ROLE_PROCESS] = LinkedList()
