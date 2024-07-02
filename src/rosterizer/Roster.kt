@@ -130,46 +130,46 @@ class Roster(private val processAssistants: List<String>) {
     fun getAssociateLoginsByRole(role: Int): List<String>? = assignedRoles[role]?.map{it.login}
 
     override fun toString(): String {
-        var result = "Problem Solve,,Waterspider,,Outbound,,EOL,,ICQA,,Recovery,,Refurb,,WHD,,Process\n"
+        var result = "Problem Solve,Waterspider,Outbound,EOL,ICQA,Recovery,Refurb,WHD,Process\n"
 
         var i = 0
         while(i < assignedRoles[Associate.ROLE_PROCESS]!!.size) {
             result += if(i < assignedRoles[Associate.ROLE_PS]!!.size )
-                "${assignedRoles[Associate.ROLE_PS]!![i].login},,"
+                "${assignedRoles[Associate.ROLE_PS]!![i].login},"
             else
-                ",,"
+                ","
             result += if(i < assignedRoles[Associate.ROLE_WATERSPIDER]!!.size)
-                "${assignedRoles[Associate.ROLE_WATERSPIDER]!![i].login},,"
+                "${assignedRoles[Associate.ROLE_WATERSPIDER]!![i].login},"
             else
-                ",,"
+                ","
             result += if(i < assignedRoles[Associate.ROLE_OUTBOUND]!!.size)
-                "${assignedRoles[Associate.ROLE_OUTBOUND]!![i].login},,"
+                "${assignedRoles[Associate.ROLE_OUTBOUND]!![i].login},"
             else
-                ",,"
+                ","
             result += if(i < assignedRoles[Associate.ROLE_EOL]!!.size)
-                "${assignedRoles[Associate.ROLE_EOL]!![i].login},,"
+                "${assignedRoles[Associate.ROLE_EOL]!![i].login},"
             else
-                ",,"
+                ","
             result += if(i < assignedRoles[Associate.ROLE_ICQA]!!.size)
-                "${assignedRoles[Associate.ROLE_ICQA]!![i].login},,"
+                "${assignedRoles[Associate.ROLE_ICQA]!![i].login},"
             else
-                ",,"
+                ","
             result += if(i < assignedRoles[Associate.ROLE_RECOVERY]!!.size)
-                "${assignedRoles[Associate.ROLE_RECOVERY]!![i].login},,"
+                "${assignedRoles[Associate.ROLE_RECOVERY]!![i].login},"
             else
-                ",,"
+                ","
             result += if(i < assignedRoles[Associate.ROLE_REFURB]!!.size)
-                "${assignedRoles[Associate.ROLE_REFURB]!![i].login},,"
+                "${assignedRoles[Associate.ROLE_REFURB]!![i].login},"
             else
-                ",,"
+                ","
             result += if(i < assignedRoles[Associate.ROLE_WHD]!!.size)
-                "${assignedRoles[Associate.ROLE_WHD]!![i].login},,"
+                "${assignedRoles[Associate.ROLE_WHD]!![i].login},"
             else
-                ",,"
+                ","
             result += if(i < assignedRoles[Associate.ROLE_PROCESS]!!.size)
-                "${assignedRoles[Associate.ROLE_PROCESS]!![i].login},,"
+                "${assignedRoles[Associate.ROLE_PROCESS]!![i].login},"
             else
-                ",,"
+                ","
             result += "\n"
             i += 1
         }
