@@ -31,7 +31,7 @@ class Roster(private val processAssistants: List<String>) {
             val assoc = Associate(row.split(",")[1].replace("\"", ""))
 
             // Filtering out process assistants from SSPOT roster
-            if(processAssistants.contains(assoc.login))
+            if(processAssistants.contains(assoc.getUsername()))
                 continue
             scheduledAssociates[assoc.login] = assoc
             //println("${scheduledAssociates.size}: ${assoc.login}")

@@ -1,6 +1,3 @@
-import fclm.FunctionWatchdog
-import fclm.ProcessWatchdog
-import fclm.TOTWatchdog
 import rosterizer.Roster
 import java.awt.Dimension
 import java.awt.GridLayout
@@ -45,9 +42,8 @@ fun openRosterizer(roster: Roster) {
     rosterizerWindow.isVisible = true
 }
 
-fun openWatchdogs(function: FunctionWatchdog, proc: ProcessWatchdog, tot: TOTWatchdog) {
-    val watchdog = JFrame()
-    watchdog.isVisible = true
+fun initializeWatchdogs() {
+
 }
 
 fun showSaveDialog(): String {
