@@ -17,7 +17,7 @@ public class Associate {
     private int roles = 0;
     private double averageRate = 0.0;
     private double averageInferredTime = 0.0;
-    private String username;
+    private final String username;
 
     public Associate(String username) {
         this.username = username;

@@ -5,6 +5,9 @@ import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 public class Shodan {
@@ -16,30 +19,10 @@ public class Shodan {
 
         List<JButton> buttonList = List.of(new JButton("Import SSPOT"), new JButton("Import Training QUIP"),
                 new JButton("Randomize Assignments"), new JButton("Export Roster"));
-        buttonList.get(0).addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                roster.importSSPOT(showOpenDialog());
-            }
-        });
-        buttonList.get(1).addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                roster.importTrainingQUIP(showOpenDialog());
-            }
-        });
-        buttonList.get(2).addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                roster.randomizeRoles();
-            }
-        });
-        buttonList.get(3).addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                roster.exportRoster(showSaveDialog());
-            }
-        });
+        buttonList.get(0).addActionListener(e -> roster.importSSPOT(showOpenDialog()));
+        buttonList.get(1).addActionListener(e -> roster.importTrainingQUIP(showOpenDialog()));
+        buttonList.get(2).addActionListener(e -> roster.randomizeRoles());
+        buttonList.get(3).addActionListener(e -> writeBytesToFile(showSaveDialog(), roster.toString().getBytes()));
 
         window.getContentPane().setLayout(new GridLayout(buttonList.size(), 1));
         for(JButton button : buttonList)
@@ -62,6 +45,16 @@ public class Shodan {
 
     public static void initializeWatchdogs() {
 
+    }
+
+    public static void writeBytesToFile(String filepath, byte[] bytes) {
+        try {
+            FileOutputStream outStream = new FileOutputStream(filepath);
+            outStream.write(bytes);
+            outStream.close();
+        } catch(IOException e) {
+            System.out.println("IOException thrown in Shodan.writeBytesToFile");
+        }
     }
 
     public static String showSaveDialog() {

@@ -114,7 +114,7 @@ public class Roster {
         this.resetRoles();
 
         Set<String> keys = scheduledAssociates.keySet();
-        String[] associates = keys.toArray(new String[keys.size()]);
+        String[] associates = keys.toArray(new String[0]);
 
 
     }
