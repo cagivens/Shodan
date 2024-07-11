@@ -133,8 +133,8 @@ public class Roster {
         }
     }
 
-    public List<String> getAssociateLoginsByRole(int role) {
-        return null;
+    public List<Associate> getAssociateLoginsByRole(int role) {
+        return new LinkedList<>(assignedRoles.get(role));
     }
 
     @Override
