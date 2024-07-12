@@ -14,9 +14,15 @@ public class Associate {
     final static int ROLE_TDR = 1024;
     final static int ROLE_PIT = 2048;
 
+    final static String SORT_SUN = "SUN";
+    final static String SORT_DAY = "DAY";
+    final static String SORT_TWI = "TWI";
+    final static String SORT_NIT = "NIT";
+
     private int roles = 0;
     private double averageRate = 0.0;
     private double averageInferredTime = 0.0;
+    private String sort;
     private final String username;
 
     public Associate(String username) {
@@ -26,12 +32,14 @@ public class Associate {
     public void addTrainedRole(int newRole) {
         roles = roles | newRole;
     }
-
     public boolean hasRole(int role) {
         return (roles & role) == role;
     }
 
     public String getUsername() { return username; }
+    public String getSort() { return sort; }
+
+    public void setSort(String sort) { this.sort = sort; }
 
     @Override
     public String toString() {
