@@ -2,10 +2,8 @@ import rosterizer.Roster;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
-import java.awt.*;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.List;
 
 public class Shodan {
 
