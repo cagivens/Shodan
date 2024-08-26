@@ -64,7 +64,7 @@ public class AssociateDB {
         rows.removeFirst();
         for(String row : rows) {
             String[] rowAsArray = row.substring(row.lastIndexOf('"') + 1, row.length() - 1).split(",");
-            //String name = rowAsArray[]
+            String name = rowAsArray[0];
             String username = rowAsArray[1];
             String process = rowAsArray[6].toLowerCase();
 
