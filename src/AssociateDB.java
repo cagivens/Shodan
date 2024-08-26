@@ -112,7 +112,12 @@ public class AssociateDB {
                     associates.get(username).addTrainedRole(Associate.ROLE_PROCESS);
             }
         }
+        saveAssociateData(filepath);
     }
 
     public Associate getAssociate(String username) { return associates.get(username); }
+
+    private void saveAssociateData(String filepath) {
+
+    }
 }

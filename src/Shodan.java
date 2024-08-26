@@ -8,11 +8,15 @@ import java.io.IOException;
 public class Shodan {
 
     public static void main(String[] args) {
+        AssociateDB db;
+
         try {
-            AssociateDB db = new AssociateDB();
+            db = new AssociateDB();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        db.readTrainingQUIP();
     }
 
     public static void writeBytesToFile(String filepath, byte[] bytes) {

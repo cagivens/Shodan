@@ -37,7 +37,7 @@ public class Roster {
 
         rows.removeFirst();
         for(String row : rows) {
-            Associate assoc = new Associate(row.split(",")[1].replace("\"", ""));
+            Associate assoc = new Associate(row.split(",")[1].replace("\"", ""), "");
 
             if(processAssistants.contains(assoc.getUsername()))
                 continue;
