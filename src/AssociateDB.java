@@ -44,7 +44,7 @@ public class AssociateDB {
         JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView());
         LinkedList<String> rows = new LinkedList<>();
         String filepath = "";
-        int option = chooser.showSaveDialog(null);
+        int option = chooser.showOpenDialog(null);
 
         if(option == JFileChooser.APPROVE_OPTION)
             filepath = chooser.getSelectedFile().getAbsolutePath();
@@ -63,49 +63,54 @@ public class AssociateDB {
 
         rows.removeFirst();
         for(String row : rows) {
-            String[] rowAsArray = row.substring(row.lastIndexOf('"') + 1, row.length() - 1).split(",");
-            String name = rowAsArray[0];
-            String username = rowAsArray[1];
-            String process = rowAsArray[6].toLowerCase();
+            String[] rowAsArray = row.split(",");
+            String name = (rowAsArray[0].replace("\"", "") + "_"
+                    + rowAsArray[1].replace("\"", "")).replace(" ", "");
+            String username = rowAsArray[2];
+            String process = rowAsArray[7].toLowerCase();
 
-            if(associates.containsKey(username))
-                switch(process) {
-                    case "ambassador":
-                        associates.get(username).addTrainedRole(Associate.ROLE_AMBASSADOR);
-                        break;
-                    case "audit":
-                        associates.get(username).addTrainedRole(Associate.ROLE_RECOVERY);
-                        break;
-                    case "end of line":
-                        associates.get(username).addTrainedRole(Associate.ROLE_EOL);
-                        break;
-                    case "outbound":
-                        associates.get(username).addTrainedRole(Associate.ROLE_OUTBOUND);
-                        break;
-                    case "pit":
-                        associates.get(username).addTrainedRole(Associate.ROLE_PIT);
-                        break;
-                    case "problem solve":
-                        associates.get(username).addTrainedRole(Associate.ROLE_PS);
-                        break;
-                    case "refurb":
-                        associates.get(username).addTrainedRole(Associate.ROLE_REFURB);
-                        break;
-                    case "shoe icqa":
-                        associates.get(username).addTrainedRole(Associate.ROLE_ICQA);
-                        break;
-                    case "tdr":
-                        associates.get(username).addTrainedRole(Associate.ROLE_TDR);
-                        break;
-                    case "water spider":
-                        associates.get(username).addTrainedRole(Associate.ROLE_WATERSPIDER);
-                        break;
-                    case "whd":
-                        associates.get(username).addTrainedRole(Associate.ROLE_WHD);
-                        break;
-                    default:
-                        associates.get(username).addTrainedRole(Associate.ROLE_PROCESS);
-                }
+            if(username.isEmpty())
+                continue;
+            if(!associates.containsKey(username))
+                associates.put(username, new Associate(username, name));
+
+            switch(process) {
+                case "ambassador":
+                    associates.get(username).addTrainedRole(Associate.ROLE_AMBASSADOR);
+                    break;
+                case "audit":
+                    associates.get(username).addTrainedRole(Associate.ROLE_RECOVERY);
+                    break;
+                case "end of line":
+                    associates.get(username).addTrainedRole(Associate.ROLE_EOL);
+                    break;
+                case "outbound":
+                    associates.get(username).addTrainedRole(Associate.ROLE_OUTBOUND);
+                    break;
+                case "pit":
+                    associates.get(username).addTrainedRole(Associate.ROLE_PIT);
+                    break;
+                case "problem solve":
+                    associates.get(username).addTrainedRole(Associate.ROLE_PS);
+                    break;
+                case "refurb":
+                    associates.get(username).addTrainedRole(Associate.ROLE_REFURB);
+                    break;
+                case "shoe icqa":
+                    associates.get(username).addTrainedRole(Associate.ROLE_ICQA);
+                    break;
+                case "tdr":
+                    associates.get(username).addTrainedRole(Associate.ROLE_TDR);
+                    break;
+                case "water spider":
+                    associates.get(username).addTrainedRole(Associate.ROLE_WATERSPIDER);
+                    break;
+                case "whd":
+                    associates.get(username).addTrainedRole(Associate.ROLE_WHD);
+                    break;
+                default:
+                    associates.get(username).addTrainedRole(Associate.ROLE_PROCESS);
+            }
         }
     }
 
