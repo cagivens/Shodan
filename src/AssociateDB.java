@@ -5,9 +5,8 @@ import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.io.PrintWriter;
+import java.util.*;
 
 public class AssociateDB {
 
@@ -118,6 +117,14 @@ public class AssociateDB {
     public Associate getAssociate(String username) { return associates.get(username); }
 
     private void saveAssociateData(String filepath) {
+        File file = new File(filepath);
+        ArrayList<Associate> assocList = new ArrayList<>(associates.values());
+        try (PrintWriter writer = new PrintWriter(file)) {
+            for(int i = 0; i < assocList.size(); i++)
+                writer.println(assocList.get(i));
 
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
