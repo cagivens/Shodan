@@ -11,11 +11,12 @@ import java.util.*;
 public class AssociateDB {
 
     private HashMap<String, Associate> associates = associates = new HashMap<>();
+    private final String DB_FILEPATH = "associate_database.csv";
 
     public AssociateDB() throws IOException {
 
         LinkedList<String> rows = new LinkedList<>();
-        File dbFile = new File("associate_database.csv");
+        File dbFile = new File(DB_FILEPATH);
 
         try {
             Scanner scanner = new Scanner(dbFile);
@@ -32,8 +33,9 @@ public class AssociateDB {
 
         for(int i = 0; i < rows.size(); i++) {
             String[] cells = rows.get(i).split(",");
-            Associate assoc = new Associate(cells[0], "");
-            assoc.addTrainedRole(Integer.parseInt(cells[1]));
+            Associate assoc = new Associate(cells[1], cells[0]);
+            assoc.addTrainedRole(Integer.parseInt(cells[2]));
+            associates.put(assoc.getUsername(), assoc);
         }
 
         System.out.println(rows);
@@ -61,8 +63,8 @@ public class AssociateDB {
         }
 
         rows.removeFirst();
-        for(String row : rows) {
-            String[] rowAsArray = row.split(",");
+        for(int i = 0; i < rows.size(); i++) {
+            String[] rowAsArray = rows.get(i).split(",");
             String name = (rowAsArray[0].replace("\"", "") + "_"
                     + rowAsArray[1].replace("\"", "")).replace(" ", "");
             String username = rowAsArray[2];
@@ -111,7 +113,7 @@ public class AssociateDB {
                     associates.get(username).addTrainedRole(Associate.ROLE_PROCESS);
             }
         }
-        saveAssociateData(filepath);
+        saveAssociateData(DB_FILEPATH);
     }
 
     public Associate getAssociate(String username) { return associates.get(username); }

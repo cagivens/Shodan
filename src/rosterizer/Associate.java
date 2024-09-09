@@ -35,6 +35,6 @@ public class Associate {
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%d,", name, username, roles);
+        return String.format("%s,%s,%d", name, username, roles);
     }
 }
