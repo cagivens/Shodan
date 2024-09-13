@@ -6,20 +6,34 @@ import java.util.*;
 
 public class Roster {
     private HashMap<String, Associate> scheduledAssociates;
-    private HashMap<String, Associate> trainingQUIP;
     private HashMap<Integer, LinkedList<Associate>> assignedRoles;
     private LinkedList<String> processAssistants;
 
     public Roster(List<String> processAssistants) {
         this.processAssistants = new LinkedList<>(processAssistants);
         this.scheduledAssociates = new HashMap<>();
-        this.trainingQUIP = new HashMap<>();
         this.assignedRoles = new HashMap<>();
 
         this.resetRoles();
     }
 
-    public void importSSPOT(List<String> rows) {
+    public void importSSPOT(String filepath) {
+        if(filepath.isEmpty())
+            return;
+
+        LinkedList<String> rows = new LinkedList<String>();
+
+        try {
+            File file = new File(filepath);
+            Scanner sc = new Scanner(file);
+
+            while(sc.hasNextLine())
+                rows.add(sc.nextLine());
+            sc.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
 
         rows.removeFirst();
         for(String row : rows) {
@@ -31,7 +45,23 @@ public class Roster {
         }
     }
 
-    public void importTrainingQUIP(List<String> rows, String sort) {
+    public void importTrainingQUIP(String filepath) {
+        if(filepath.isEmpty())
+            return;
+
+        LinkedList<String> rows = new LinkedList<>();
+
+        try {
+            File file = new File(filepath);
+            Scanner sc = new Scanner(file);
+
+            while(sc.hasNextLine())
+                rows.add(sc.nextLine());
+            sc.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
 
         rows.removeFirst();
         for(String row : rows) {
@@ -39,47 +69,44 @@ public class Roster {
             String username = rowAsArray[1];
             String process = rowAsArray[6].toLowerCase();
 
-            if(!trainingQUIP.containsKey(username)) {
-                trainingQUIP.put(username, new Associate(username));
-                trainingQUIP.get(username).setSort(sort);
-            }
-            switch(process) {
-                case "ambassador":
-                    trainingQUIP.get(username).addTrainedRole(Associate.ROLE_AMBASSADOR);
-                    break;
-                case "audit":
-                    trainingQUIP.get(username).addTrainedRole(Associate.ROLE_RECOVERY);
-                    break;
-                case "end of line":
-                    trainingQUIP.get(username).addTrainedRole(Associate.ROLE_EOL);
-                    break;
-                case "outbound":
-                    trainingQUIP.get(username).addTrainedRole(Associate.ROLE_OUTBOUND);
-                    break;
-                case "pit":
-                    trainingQUIP.get(username).addTrainedRole(Associate.ROLE_PIT);
-                    break;
-                case "problem solve":
-                    trainingQUIP.get(username).addTrainedRole(Associate.ROLE_PS);
-                    break;
-                case "refurb":
-                    trainingQUIP.get(username).addTrainedRole(Associate.ROLE_REFURB);
-                    break;
-                case "shoe icqa":
-                    trainingQUIP.get(username).addTrainedRole(Associate.ROLE_ICQA);
-                    break;
-                case "tdr":
-                    trainingQUIP.get(username).addTrainedRole(Associate.ROLE_TDR);
-                    break;
-                case "water spider":
-                    trainingQUIP.get(username).addTrainedRole(Associate.ROLE_WATERSPIDER);
-                    break;
-                case "whd":
-                    trainingQUIP.get(username).addTrainedRole(Associate.ROLE_WHD);
-                    break;
-                default:
-                    trainingQUIP.get(username).addTrainedRole(Associate.ROLE_PROCESS);
-            }
+            if(scheduledAssociates.containsKey(username))
+                switch(process) {
+                    case "ambassador":
+                        scheduledAssociates.get(username).addTrainedRole(Associate.ROLE_AMBASSADOR);
+                        break;
+                    case "audit":
+                        scheduledAssociates.get(username).addTrainedRole(Associate.ROLE_RECOVERY);
+                        break;
+                    case "end of line":
+                        scheduledAssociates.get(username).addTrainedRole(Associate.ROLE_EOL);
+                        break;
+                    case "outbound":
+                        scheduledAssociates.get(username).addTrainedRole(Associate.ROLE_OUTBOUND);
+                        break;
+                    case "pit":
+                        scheduledAssociates.get(username).addTrainedRole(Associate.ROLE_PIT);
+                        break;
+                    case "problem solve":
+                        scheduledAssociates.get(username).addTrainedRole(Associate.ROLE_PS);
+                        break;
+                    case "refurb":
+                        scheduledAssociates.get(username).addTrainedRole(Associate.ROLE_REFURB);
+                        break;
+                    case "shoe icqa":
+                        scheduledAssociates.get(username).addTrainedRole(Associate.ROLE_ICQA);
+                        break;
+                    case "tdr":
+                        scheduledAssociates.get(username).addTrainedRole(Associate.ROLE_TDR);
+                        break;
+                    case "water spider":
+                        scheduledAssociates.get(username).addTrainedRole(Associate.ROLE_WATERSPIDER);
+                        break;
+                    case "whd":
+                        scheduledAssociates.get(username).addTrainedRole(Associate.ROLE_WHD);
+                        break;
+                    default:
+                        scheduledAssociates.get(username).addTrainedRole(Associate.ROLE_PROCESS);
+                }
         }
     }
 
