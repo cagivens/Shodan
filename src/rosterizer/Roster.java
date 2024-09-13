@@ -23,7 +23,7 @@ public class Roster {
 
         rows.removeFirst();
         for(String row : rows) {
-            Associate assoc = new Associate(row.split(",")[1].replace("\"", ""));
+            Associate assoc = new Associate(row.split(",")[1].replace("\"", ""), "");
 
             if(processAssistants.contains(assoc.getUsername()))
                 continue;
@@ -106,8 +106,8 @@ public class Roster {
         }
     }
 
-    public List<String> getAssociateLoginsByRole(int role) {
-        return null;
+    public List<Associate> getAssociateLoginsByRole(int role) {
+        return new LinkedList<>(assignedRoles.get(role));
     }
 
     @Override
