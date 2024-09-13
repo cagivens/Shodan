@@ -27,7 +27,7 @@ public class AssociateDB {
             scanner.close();
         } catch (FileNotFoundException e) {
             if(dbFile.createNewFile()) {
-                System.out.println("Created new Associate database file.");
+                System.out.println("Created new rosterizer.Associate database file.");
             }
         }
 
