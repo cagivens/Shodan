@@ -1,14 +1,36 @@
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Roster {
     private HashMap<Integer, LinkedList<String>> assignments;
+    private HashMap<String, Associate> associates;
+    private AssociateDB database;
 
-    public Roster() {
+    private int maxPS;
+    private int maxWS;
+    private int maxEOL;
+
+    public Roster(int maxPS, int maxWS, int maxEOL, AssociateDB database) {
+        assignments = new HashMap<>();
+        associates = new HashMap<>();
+
+        this.maxPS = maxPS;
+        this.maxWS = maxWS;
+        this.maxEOL = maxEOL;
+        this.database = database;
+    }
+
+    public void setAssignments() {
+        LinkedList<Associate> unassignedAssociates = new LinkedList<>(associates.values());
+        List<Associate.Role> possibleRoles = Arrays.asList(Associate.Role.values());
+
+        Collections.shuffle(unassignedAssociates);
+        Collections.shuffle(possibleRoles);
+        possibleRoles.remove(Associate.Role.PROCESS);
+
 
     }
 
-    public void exportRoster() {
+    public void importSSPOT() {
 
     }
 

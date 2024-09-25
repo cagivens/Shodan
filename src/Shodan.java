@@ -1,5 +1,3 @@
-import rosterizer.Roster;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.FileOutputStream;

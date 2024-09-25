@@ -1,5 +1,3 @@
-import rosterizer.Associate;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
@@ -77,40 +75,40 @@ public class AssociateDB {
 
             switch(process) {
                 case "ambassador":
-                    associates.get(username).addTrainedRole(Associate.ROLE_AMBASSADOR);
+                    associates.get(username).addTrainedRole(Associate.Role.AMBASSADOR.value);
                     break;
                 case "audit":
-                    associates.get(username).addTrainedRole(Associate.ROLE_RECOVERY);
+                    associates.get(username).addTrainedRole(Associate.Role.RECOVERY.value);
                     break;
                 case "end of line":
-                    associates.get(username).addTrainedRole(Associate.ROLE_EOL);
+                    associates.get(username).addTrainedRole(Associate.Role.EOL.value);
                     break;
                 case "outbound":
-                    associates.get(username).addTrainedRole(Associate.ROLE_OUTBOUND);
+                    associates.get(username).addTrainedRole(Associate.Role.OUTBOUND.value);
                     break;
                 case "pit":
-                    associates.get(username).addTrainedRole(Associate.ROLE_PIT);
+                    associates.get(username).addTrainedRole(Associate.Role.PIT.value);
                     break;
                 case "problem solve":
-                    associates.get(username).addTrainedRole(Associate.ROLE_PS);
+                    associates.get(username).addTrainedRole(Associate.Role.PS.value);
                     break;
                 case "refurb":
-                    associates.get(username).addTrainedRole(Associate.ROLE_REFURB);
+                    associates.get(username).addTrainedRole(Associate.Role.REFURB.value);
                     break;
                 case "shoe icqa":
-                    associates.get(username).addTrainedRole(Associate.ROLE_ICQA);
+                    associates.get(username).addTrainedRole(Associate.Role.ICQA.value);
                     break;
                 case "tdr":
-                    associates.get(username).addTrainedRole(Associate.ROLE_TDR);
+                    associates.get(username).addTrainedRole(Associate.Role.TDR.value);
                     break;
                 case "water spider":
-                    associates.get(username).addTrainedRole(Associate.ROLE_WATERSPIDER);
+                    associates.get(username).addTrainedRole(Associate.Role.WATERSPIDER.value);
                     break;
                 case "whd":
-                    associates.get(username).addTrainedRole(Associate.ROLE_WHD);
+                    associates.get(username).addTrainedRole(Associate.Role.WHD.value);
                     break;
                 default:
-                    associates.get(username).addTrainedRole(Associate.ROLE_PROCESS);
+                    associates.get(username).addTrainedRole(Associate.Role.PROCESS.value);
             }
         }
         saveAssociateData(DB_FILEPATH);
