@@ -1,5 +1,3 @@
-package rosterizer;
-
 public class Associate {
     public static final int ROLE_AMBASSADOR = 1;
     public static final int ROLE_EOL = 2;
