@@ -98,6 +98,9 @@ public class AssociateDB {
                 case "shoe icqa":
                     associates.get(username).addTrainedRole(Associate.Role.ICQA.value);
                     break;
+                case "shoe processing":
+                    associates.get(username).addTrainedRole(Associate.Role.SHOES.value);
+                    break;
                 case "tdr":
                     associates.get(username).addTrainedRole(Associate.Role.TDR.value);
                     break;
@@ -126,5 +129,14 @@ public class AssociateDB {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        Associate[] assocArr = associates.values().toArray(new Associate[associates.size()]);
+        for(int i = 0; i < associates.size(); i++)
+            result.append(assocArr[i].toString()).append("\n");
+        return result.toString();
     }
 }

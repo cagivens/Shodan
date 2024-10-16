@@ -12,7 +12,8 @@ public class Associate {
         PROCESS(256),
         ICQA(512),
         TDR(1024),
-        PIT(2048);
+        PIT(2048),
+        SHOES(4096);
 
         final int value;
 

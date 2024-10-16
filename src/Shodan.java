@@ -15,6 +15,7 @@ public class Shodan {
         }
 
         db.readTrainingQUIP();
+        System.out.println(db);
     }
 
     public static void writeBytesToFile(String filepath, byte[] bytes) {
