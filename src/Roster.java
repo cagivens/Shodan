@@ -5,17 +5,10 @@ public class Roster {
     private HashMap<String, Associate> associates;
     private AssociateDB database;
 
-    private int maxPS;
-    private int maxWS;
-    private int maxEOL;
-
-    public Roster(int maxPS, int maxWS, int maxEOL, AssociateDB database) {
+    public Roster(AssociateDB database) {
         assignments = new HashMap<>();
         associates = new HashMap<>();
 
-        this.maxPS = maxPS;
-        this.maxWS = maxWS;
-        this.maxEOL = maxEOL;
         this.database = database;
     }
 
