@@ -43,18 +43,24 @@ public class AssociateDB {
         JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView());
         LinkedList<String> rows = new LinkedList<>();
         String filepath = "";
+
+        chooser.setMultiSelectionEnabled(true);
         int option = chooser.showOpenDialog(null);
 
         if(option == JFileChooser.APPROVE_OPTION)
             filepath = chooser.getSelectedFile().getAbsolutePath();
 
         try {
-            File file = new File(filepath);
-            Scanner sc = new Scanner(file);
+            File[] files = chooser.getSelectedFiles();
+            //File file = new File(filepath);
+            //Scanner sc = new Scanner(file);
 
-            while(sc.hasNextLine())
-                rows.add(sc.nextLine());
-            sc.close();
+            for (File file : files) {
+                Scanner sc = new Scanner(file);
+                while (sc.hasNextLine())
+                    rows.add(sc.nextLine());
+                sc.close();
+            }
         } catch(FileNotFoundException e) {
             e.printStackTrace();
             return;
@@ -114,13 +120,13 @@ public class AssociateDB {
                     associates.get(username).addTrainedRole(Associate.Role.PROCESS.value);
             }
         }
-        saveAssociateData(DB_FILEPATH);
+        saveAssociateData();
     }
 
     public Associate getAssociate(String username) { return associates.get(username); }
 
-    private void saveAssociateData(String filepath) {
-        File file = new File(filepath);
+    private void saveAssociateData() {
+        File file = new File(DB_FILEPATH);
         ArrayList<Associate> assocList = new ArrayList<>(associates.values());
         try (PrintWriter writer = new PrintWriter(file)) {
             for(int i = 0; i < assocList.size(); i++)
