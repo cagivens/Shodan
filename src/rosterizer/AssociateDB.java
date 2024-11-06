@@ -1,3 +1,5 @@
+package rosterizer;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
@@ -25,13 +27,13 @@ public class AssociateDB {
             scanner.close();
         } catch (FileNotFoundException e) {
             if(dbFile.createNewFile()) {
-                System.out.println("Created new Associate database file.");
+                System.out.println("Created new rosterizer.Associate database file.");
             }
         }
 
         for(int i = 0; i < rows.size(); i++) {
             String[] cells = rows.get(i).split(",");
-            Associate assoc = new Associate(cells[1], cells[0]);
+            Associate assoc = new Associate(cells[1]);
             assoc.addTrainedRole(Integer.parseInt(cells[2]));
             associates.put(assoc.getUsername(), assoc);
         }
@@ -75,7 +77,7 @@ public class AssociateDB {
             if(username.isEmpty())
                 continue;
             if(!associates.containsKey(username))
-                associates.put(username, new Associate(username, name));
+                associates.put(username, new Associate(username));
 
             switch(process) {
                 case "ambassador":

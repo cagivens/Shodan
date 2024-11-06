@@ -1,3 +1,5 @@
+package rosterizer;
+
 public class Associate {
 
     public enum Role {
@@ -24,11 +26,9 @@ public class Associate {
 
     private int roles = 0;
     private final String username;
-    private final String name;
 
-    public Associate(String username, String name) {
+    public Associate(String username) {
         this.username = username;
-        this.name = name;
     }
 
     public void addTrainedRole(int newRole) {
@@ -43,6 +43,6 @@ public class Associate {
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%d", name, username, roles);
+        return String.format("%s,%d", username, roles);
     }
 }

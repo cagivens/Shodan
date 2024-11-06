@@ -1,3 +1,6 @@
+import rosterizer.AssociateDB;
+import rosterizer.Roster;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.FileOutputStream;
@@ -14,8 +17,10 @@ public class Shodan {
             throw new RuntimeException(e);
         }
 
-        db.readTrainingQUIP();
-        System.out.println(db);
+        Roster roster = new Roster(db);
+
+        roster.importSSPOT();
+        roster.setAssignments();
     }
 
     public static void writeBytesToFile(String filepath, byte[] bytes) {
