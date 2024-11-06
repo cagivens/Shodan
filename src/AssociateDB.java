@@ -52,8 +52,6 @@ public class AssociateDB {
 
         try {
             File[] files = chooser.getSelectedFiles();
-            //File file = new File(filepath);
-            //Scanner sc = new Scanner(file);
 
             for (File file : files) {
                 Scanner sc = new Scanner(file);
