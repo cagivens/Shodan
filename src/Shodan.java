@@ -17,6 +17,8 @@ public class Shodan {
             throw new RuntimeException(e);
         }
 
+        //db.readTrainingQUIP();
+
         Roster roster = new Roster(db);
 
         roster.importSSPOT();

@@ -33,8 +33,8 @@ public class AssociateDB {
 
         for(int i = 0; i < rows.size(); i++) {
             String[] cells = rows.get(i).split(",");
-            Associate assoc = new Associate(cells[1]);
-            assoc.addTrainedRole(Integer.parseInt(cells[2]));
+            Associate assoc = new Associate(cells[0]);
+            assoc.addTrainedRole(Integer.parseInt(cells[1]));
             associates.put(assoc.getUsername(), assoc);
         }
 
