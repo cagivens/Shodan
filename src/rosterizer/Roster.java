@@ -110,9 +110,9 @@ public class Roster {
         // Selecting softlines processors
         assignments.put(Associate.Role.PROCESS.value, new LinkedList<>());
         System.out.println("---SOFTLINES PROCESSING---");
-        for(int i = 0; i < unassignedAssociates.size(); i++) {
-            assignments.get(Associate.Role.PROCESS.value).add(unassignedAssociates.get(i).getUsername());
-            System.out.println(unassignedAssociates.get(i).getUsername());
+        for (Associate unassignedAssociate : unassignedAssociates) {
+            assignments.get(Associate.Role.PROCESS.value).add(unassignedAssociate.getUsername());
+            System.out.println(unassignedAssociate.getUsername());
         }
     }
 
