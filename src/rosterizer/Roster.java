@@ -1,7 +1,6 @@
 package rosterizer;
 
-import net.bytebuddy.dynamic.scaffold.MethodGraph;
-
+import javax.imageio.stream.ImageInputStreamImpl;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
@@ -24,12 +23,20 @@ public class Roster {
     
 
     public Roster(AssociateDB database) {
-        assignments = new HashMap<>();
-        associates = new HashMap<>();
-
+        this.assignments = new HashMap<>();
+        this.associates = new HashMap<>();
         this.database = database;
     }
 
+    private void assignAssociatesToRole(Associate.Role role, LinkedList<Associate> unassigned, int maximum) {
+        assignments.put(role.value, new LinkedList<>());
+        for(int i = 0; assignments.get(role.value).size() < maximum; i++)
+            if(unassigned.get(i).hasRole(role.value)) {
+                assignments.get(role.value).add(unassigned.get(i).getUsername());
+                unassigned.remove(i);
+            }
+    }
+    
     public void setAssignments() {
         LinkedList<Associate> unassignedAssociates = new LinkedList<>(associates.values());
 
@@ -38,12 +45,8 @@ public class Roster {
         // Selecting problem solvers
         assignments.put(Associate.Role.PS.value, new LinkedList<>());
         System.out.println("---PROBLEM SOLVERS---");
-        for(int i = 0; assignments.get(Associate.Role.PS.value).size() < problemSolverMax; i++)
-            if(unassignedAssociates.get(i).hasRole(Associate.Role.PS.value)) {
-                assignments.get(Associate.Role.PS.value).add(unassignedAssociates.get(i).getUsername());
-                System.out.println(unassignedAssociates.get(i).getUsername());
-                unassignedAssociates.remove(i);
-            }
+        assignAssociatesToRole(Associate.Role.PS, unassignedAssociates, problemSolverMax);
+
         // Selecting waterspiders
         assignments.put(Associate.Role.WATERSPIDER.value, new LinkedList<>());
         System.out.println("---WATERSPIDERS---");
